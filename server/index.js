@@ -9,13 +9,11 @@ const jwt = require('jsonwebtoken');
 
 const usersRouter = require('./routes/users');
 const notesRouter = require('./routes/notes');
-const recipesRouter = require('./routes/recipes');
 const authRouter = require('./routes/auth');
 const {localStrategy, jwtStrategy } = require('./passport/local');
 
 const { PORT, CLIENT_ORIGIN } = require('./config');
 const { dbConnect } = require('./db-mongoose');
-const Users = require('./models/user');
 // const {dbConnect} = require('./db-knex');
 const app = express();
 // Mount routers

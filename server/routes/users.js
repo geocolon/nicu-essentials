@@ -2,7 +2,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const router = express.Router();
-const mongoose = require('mongoose');
 
 const User = require('../models/user');
 
@@ -20,7 +19,7 @@ router.get('/users', (req, res) => {
 
 /* ========== POST/CREATE AN ITEM ========== */
 router.post('/users', jsonParser, (req, res) => {
-  const requiredFields = ['username', 'password'];
+  const requiredFields = ['username', 'password', 'email'];
   const missingField = requiredFields.find(field => !(field in req.body));
   console.log(req.body);
 
@@ -33,7 +32,7 @@ router.post('/users', jsonParser, (req, res) => {
     });
   }
 
-  const stringFields = ['username', 'password', 'firstname', 'lastname'];
+  const stringFields = ['username', 'password', 'firstname', 'lastname', 'email'];
   const nonStringField = stringFields.find(
     field => field in req.body && typeof req.body[field] !== 'string'
   );
@@ -103,7 +102,7 @@ router.post('/users', jsonParser, (req, res) => {
     });
   }
 
-  let {username, password, firstname = '', lastname = ''} = req.body;
+  let {  email, username, password, firstname = '', lastname = ''} = req.body;
   // Username and password come in pre-trimmed, otherwise we throw an error
   // before this
   firstname = firstname.trim();
@@ -128,6 +127,7 @@ router.post('/users', jsonParser, (req, res) => {
     .then(hash => {
       return User.create({
         username,
+        email,
         password: hash,
         firstname,
         lastname
