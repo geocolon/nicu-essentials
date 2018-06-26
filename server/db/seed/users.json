@@ -1,0 +1,14 @@
+[
+    {
+        "username":"geocolon",
+        "firstname": "George",
+        "lastname": "Colon",
+        "password": "abcdef1234"
+    },
+    {
+        "username":"AxeMan",
+        "firstname": "Alex",
+        "lastname": "Cumbo",
+        "password": "abcdef1234"
+    }
+]
